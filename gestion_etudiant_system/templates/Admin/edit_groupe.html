@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+   <div class="col-sm-12">
+      <div class="card">
+         <div class="card-body">
+            <form method="post" action="{% url 'update_groupe' %}" >
+               {% csrf_token %}
+               <div class="col-12">
+                  <h5 class="form-title"><span>Modifier Groupe</span></h5>
+               </div>
+               {% include 'comprend/messages.html' %}
+               <div class="col-sm-11">
+                  <div class="form-group">
+                     <label>Groupe</label>
+                     <input type="text" class="form-control" name="name" value="{{groupe.nom}}" required>
+                     <input type="text" class="form-control" name="groupe_id" value="{{groupe.id}}" hidden>
+                  </div>
+               </div>
+               <div class="col-12">
+                  <button type="submit" class="btn btn-primary">Modifier Groupe</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}

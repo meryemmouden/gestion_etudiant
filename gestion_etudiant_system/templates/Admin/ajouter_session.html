@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="content container-fluid">
+
+<div class="page-header">
+<div class="row align-items-center">
+<div class="col">
+
+</div>
+</div>
+</div>
+ {% include 'comprend/messages.html' %}
+<div class="row">
+<div class="col-sm-12">
+<div class="card">
+<div class="card-body">
+<form  method="post" action="{% url 'add_session' %}">
+    {%csrf_token%}
+<div class="row">
+<div class="col-12">
+<h5 class="form-title"><span> Information sur l'année scolaire</span></h5>
+</div>
+<div class="col-12 col-sm-6">
+ <div class="form-group">
+   <label> début d'année</label>
+      <div>
+         <input type="date" class="form-control" name="session_year_start" required>
+      </div>
+ </div>
+</div>
+    <div class="col-12 col-sm-6">
+ <div class="form-group" >
+   <label>fin d'année</label>
+      <div>
+         <input type="date" class="form-control" name="session_year_end" required>
+      </div>
+ </div>
+</div>
+
+
+
+    <br>
+<div class="col-12 mt-4">
+<button type="submit" class="btn btn-primary">Ajouter Année scolaire</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}

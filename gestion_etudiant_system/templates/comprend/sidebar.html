@@ -1,0 +1,142 @@
+{% load active_link_tags %}
+    <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+               <div id="sidebar-menu" class="sidebar-menu">
+                   {% if user.user_type == '1' %}
+
+                  <ul>
+                     <li class="menu-title">
+                        <span>Menu</span>
+                     </li>
+                    <li class="{%active_link 'admin_home' 'active' %}">
+                        <a href="{%url  'admin_home'%}"><i class="fas fa-holly-berry"></i> <span>Tableau de bord</span></a>
+                     </li>
+                       <li class="{%active_link 'prof_send_notification' 'active' %}">
+                        <a href="{% url 'prof_send_notification' %}"><i class="fa fa-bell"></i> <span>notification aux professeurs</span></a>
+                     </li>
+                       <li class="{%active_link 'student_send_notification' 'active' %}">
+                        <a href="{% url 'student_send_notification'%}"><i class="fa fa-bell"></i> <span> notification aux étudiants</span></a>
+                     </li>
+                         <li class="{%active_link 'prof_feedback_reply' 'active' %}">
+                        <a href="{%url 'prof_feedback_reply' %}"><i class="fas fa-comments"></i> <span>Messages des professeurs</span></a>
+                     </li>
+                         <li class="{%active_link 'get_student_feedback' 'active' %}">
+                        <a href="{%url 'get_student_feedback' %}"><i class="fas fa-comments"></i> <span>Messages des étudiants</span></a>
+                     </li>
+                        <li class="{%active_link 'prof_leave_view' 'active' %}">
+                        <a href="{% url 'prof_leave_view' %}"><i class="fas fa-envelope"></i> <span>Absence des professeurs</span></a>
+                     </li>
+                     <li class="submenu {%active_link 'ajouter_etudiant' 'active' %} {%active_link 'voir_student' 'active' %}">
+                        <a href="#"><i class="fas fa-user-graduate"></i> <span> étudiants</span> <span class="menu-arrow"></span></a>
+                        <ul>
+
+                           <li><a href="{%url  'ajouter_etudiant'%}">Ajouter un étudiant</a></li>
+                            <li><a href="{% url 'voir_student' %}">Voir étudiant</a></li>
+                        </ul>
+                     </li>
+                     <li class="submenu {%active_link 'add_prof' 'active' %} {%active_link 'view_prof' 'active' %}">
+                        <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Professeurs</span> <span class="menu-arrow"></span></a>
+                        <ul>
+
+                           <li><a href="{% url 'add_prof' %}">Ajouter un professeur</a></li>
+                           <li><a href="{% url 'view_prof' %}">Voir professeur </a></li>
+
+                        </ul>
+                     </li>
+                     <li class="submenu {%active_link 'ajouter_groupe' 'active' %} {%active_link 'view_groupe' 'active' %}">
+                        <a href="#"><i class="fa fa-graduation-cap"></i> <span> Groupes</span> <span class="menu-arrow"></span></a>
+                           <ul>
+                               <li><a href="{% url 'ajouter_groupe' %}">Ajouter un groupe</a></li>
+                                <li><a href="{% url 'view_groupe' %}">Voir groupe</a></li>
+                           </ul>
+                     </li>
+                     <li class="submenu {%active_link 'ajouter_matiere' 'active' %} {%active_link 'view_matiere' 'active' %}">
+                        <a href="#"><i class="fas fa-book-reader"></i> <span> Matières</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                           <li><a href="{% url 'ajouter_matiere' %}">Ajouter matière</a></li>
+                           <li><a href="{% url 'view_matiere' %}">Voir matière</a></li>
+
+                        </ul>
+                     </li>
+                        <li class="submenu {%active_link 'add_session' 'active' %} {%active_link 'view_session' 'active' %}">
+                        <a href="#"><i class="fas fa-clock"></i> <span>Année Scolaire</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                           <li><a href="{% url 'add_session' %}">Ajouter Année Scolaire </a></li>
+                           <li><a href="{% url 'view_session' %}">Voir Année Scolaire</a></li>
+
+                        </ul>
+                     </li>
+
+                      <li class="{%active_link 'Logout' 'active' %}">
+                        <a href="{%url 'Logout'%}"><i class="fas fa-sign-out-alt"></i> <span>Déconnexion</span></a>
+                     </li>
+                  </ul>
+                   {% elif user.user_type == '2'%}
+                     <ul>
+                     <li class="menu-title">
+                        <span>Menu</span>
+                     </li>
+                 <!--   <li class="{%active_link 'prof_home' 'active' %}">
+                        <a href="{%url  'prof_home'%}"><i class="fas fa-holly-berry"></i> <span>Tableau de bord</span></a>
+                     </li>-->
+                           <li class="{%active_link 'prof_feedback' 'active' %}">
+                        <a href="{%url  'prof_feedback'%}"><i class="fas fa-comment"></i> <span>Envoyer Messsage</span></a>
+                     </li>
+                           <li class="{%active_link 'notification' 'active' %}">
+                        <a href="{%url  'notification'%}"><i class="fas fa-bell"></i> <span>Notification</span></a>
+                     </li>
+                            <li class="{%active_link 'prof_apply_leave' 'active' %}">
+                        <a href="{%url  'prof_apply_leave'%}"><i class="fas fa-envelope-open"></i> <span>Demander une absence </span></a>
+                     </li>
+
+                          <li class="{%active_link 'prof_take_abscence' 'active' %}">
+                        <a href="{%url 'prof_take_abscence'%}"><i class="fas fa-calendar-alt"></i> <span>Noter l'absence</span></a>
+                     </li>
+                           <li class="{%active_link 'prof_voir_abscence' 'active' %}">
+                        <a href="{%url 'prof_voir_abscence'%}"><i class="fas fa-calendar-alt"></i> <span>Afficher l'absence</span></a>
+                     </li>
+                          <li class="{%active_link 'prof_add_result' 'active' %}">
+                        <a href="{%url 'prof_add_result'%}"><i class="fas fa-poll-h"></i> <span>Ajouter Résultat</span></a>
+                     </li>
+
+
+
+                          <li class="{%active_link 'Logout' 'active' %}">
+                        <a href="{%url 'Logout'%}"><i class="fas fa-sign-out-alt"></i> <span>Déconnexion</span></a>
+                     </li>
+                     </ul>
+                   {% else %}
+ <ul>
+                     <li class="menu-title">
+                        <span>Menu</span>
+                     </li>
+    <!-- <li class="{%active_link 'student_home' 'active' %}">
+                        <a href="{%url  'student_home'%}"><i class="fas fa-holly-berry"></i> <span>Tableau de bord</span></a>
+                     </li>-->
+
+       <li class="{%active_link 'student_feedback' 'active' %}">
+  <a href="{% url 'student_feedback'%}"><i class="fas fa-comment" aria-hidden="true"></i><span>Envoyer Message</span></a>
+
+     </li>
+       <li class="{%active_link 'student_view_abscence' 'active' %}">
+                        <a href="{%url 'student_view_abscence'%}"><i class="fas fa-calendar-alt"></i> <span>Afficher l'absence</span></a>
+                     </li>
+     <li class="{%active_link 'view_result' 'active' %}">
+  <a href="{%url 'view_result'%}"><i class="fa fa-poll" aria-hidden="true"></i><span>Afficher Resultat</span></a>
+
+     </li>
+
+       <li class="{%active_link 'student_notification' 'active' %}">
+  <a href="{%url 'student_notification'%}"><i class="fas fa-bell" aria-hidden="true"></i><span>Notifications</span></a>
+
+     </li>
+       <li class="{%active_link 'Logout' 'active' %}">
+  <a href="{%url 'Logout'%}"><i class="fa fa-calendar" aria-hidden="true"></i><span>Déconnexion</span></a>
+
+     </li>
+ </ul>
+
+                   {% endif %}
+               </div>
+            </div>
+         </div>

@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="content container-fluid">
+
+<div class="page-header">
+<div class="row align-items-center">
+<div class="col">
+
+</div>
+</div>
+</div>
+ {% include 'comprend/messages.html' %}
+<div class="row">
+<div class="col-sm-12">
+<div class="card">
+<div class="card-body">
+    {%if action is None %}
+<form  method="post" action="?action=get_student">
+    {%csrf_token%}
+<div class="row">
+<div class="col-12">
+<h5 class="form-title"><span>Prendre Absence</span></h5>
+</div>
+
+<div class="col-12 col-sm-6">
+ <label>Matiére</label>
+   <select class="form-control" name="matiere_id" required>
+
+       {% for i in matiere %}
+  <option value="{{i.id}}">{{i.nom}}</option>
+{%endfor%}
+   </select>
+</div>
+
+<div class="col-12 col-sm-6">
+<label>Année Scolaire </label>
+   <select class="form-control" name="session_year_id" required>
+  <option>Sélectionnez l'année</option>
+       {%for i in session_year%}
+  <option value="{{i.id}}">{{i.debut_session}} To {{i.fin_session}} </option>
+{%endfor%}
+   </select>
+</div>
+
+    <br>
+<div class="col-12 mt-4">
+<button type="submit" class="btn btn-primary">Récupérer l'étudiant</button>
+</div>
+</div>
+</form>
+    {% else %}
+    <form  method="post" action="{% url 'prof_save_abscence' %}">
+    {%csrf_token%}
+<div class="row">
+<div class="col-12">
+<h5 class="form-title"><span>L'absence</span></h5>
+</div>
+
+<div class="col-12 col-sm-6">
+ <label>Matiére</label>
+   <select class="form-control" name="matiere_id" required>
+
+  <option value="{{get_matiere.id}}">{{get_matiere}}</option>
+
+   </select>
+</div>
+
+<div class="col-12 col-sm-6">
+<label>Année Scolaire</label>
+   <select class="form-control" name="session_year_id" required>
+
+  <option value="{{get_session_year.id}}">{{get_session_year}}</option>
+
+   </select>
+</div>
+
+    <br>
+    <div class="col-12 col-sm-6 mt-4">
+<div class="form-group">
+<label>Date de l'absence</label>
+<input type="date" class="form-control" name="abscence_date" >
+</div>
+</div>
+    {% for i in students %}
+      <div class="col-12 mt-4 mt-4">
+<div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1" value="{{i.id}}" name="student_id">
+    <label class="form-check-label" for="exampleCheck1">{{i.admin.first_name}} {{i.admin.last_name}}</label>
+  </div>
+</div>
+{% endfor %}
+    <br>
+<div class="col-12 mt-4">
+<button type="submit" class="btn btn-primary">Terminé</button>
+</div>
+</div>
+</form>
+     {% endif %}
+</div>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}

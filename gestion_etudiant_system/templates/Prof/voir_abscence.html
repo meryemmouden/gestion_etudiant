@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="content container-fluid">
+
+<div class="page-header">
+<div class="row align-items-center">
+<div class="col">
+
+</div>
+</div>
+</div>
+ {% include 'comprend/messages.html' %}
+    {% if action is None %}
+<div class="row">
+<div class="col-sm-12">
+<div class="card">
+<div class="card-body">
+
+<form  method="post" action="?action=view_attendance">
+    {%csrf_token%}
+<div class="row">
+<div class="col-12">
+<h5 class="form-title"><span>Afficher l'absence</span></h5>
+</div>
+
+<div class="col-12 col-sm-6">
+ <label>Matiére</label>
+   <select class="form-control" name="matiere_id" required>
+
+       {% for i in matiere %}
+  <option value="{{i.id}}">{{i.nom}}</option>
+{%endfor%}
+   </select>
+</div>
+
+<div class="col-12 col-sm-6">
+<label>Année scolaire</label>
+   <select class="form-control" name="session_year_id" required>
+  <option>Sélectionnez l'année</option>
+       {%for i in session_year%}
+  <option value="{{i.id}}">{{i.debut_session}} Au {{i.fin_session}} </option>
+{%endfor%}
+   </select>
+</div>
+
+<div class="col-12 col-sm-6 mt-4">
+<label>Date de l'absence</label>
+<input type="date" class="form-control" name="abscence_date" required>
+
+</div>
+    <br>
+<div class="col-12 mt-4">
+<button type="submit" class="btn btn-primary">Afficher Etudiants</button>
+</div>
+</div>
+</form>
+
+</div>
+</div>
+</div>
+</div>
+    {% else %}
+    <div class="row">
+<div class="col-sm-12">
+<div class="card">
+<div class="card-body">
+
+<form  method="post" action="?action=view_attendance">
+    {%csrf_token%}
+<div class="row">
+<div class="col-12">
+<h5 class="form-title"><span>Afficher l'absence</span></h5>
+</div>
+
+<div class="col-12 col-sm-6">
+ <label>Matiére</label>
+   <select class="form-control" name="matiere_id" disabled>
+
+  <option value="{{i.id}}">{{get_matiere}}</option>
+
+   </select>
+</div>
+
+<div class="col-12 col-sm-6">
+<label>Année scolaire </label>
+   <select class="form-control" name="session_year_id" disabled>
+
+  <option value="{{i.id}}">{{get_session_year}}</option>
+
+   </select>
+</div>
+
+<div class="col-12 col-sm-6 mt-4">
+<label>Date de l'absence</label>
+<input type="date" class="form-control" name="abscence_date" value="{{abscence_date}}" disabled>
+
+</div>
+    <br>
+<div class="col-12 mt-4">
+  <div class="row">
+      <div class="col-sm-12">
+         <div class="card card-table">
+            <div class="card-body">
+               <div class="table-responsive">
+                  <table id="table_id" class="table table-hover table-center mb-0">
+                     <thead>
+                        <tr>
+
+                           <th>Etudiant</th>
+                           <th>Email</th>
+
+                        </tr>
+                     </thead>
+                     <tbody>
+                        {% for i in abscence_report %}
+                        <tr>
+
+                           <td>{{i.etudiant_id.admin.first_name}} &nbsp; {{i.etudiant_id.admin.last_name}} </td>
+                           <td>{{i.etudiant_id.admin.email}}</td>
+
+
+                        </tr>
+                        {% endfor %}
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+</div>
+</form>
+
+</div>
+</div>
+</div>
+</div>
+    {% endif %}
+</div>
+
+{% endblock %}

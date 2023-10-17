@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card card-table">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table id="table_id" class="table table-hover table-center mb-0">
+             <div class="col-12">
+                  <h5 class="form-title"><span>Afficher les résultats</span></h5>
+               </div>
+            <thead>
+              <tr>
+                <th>Matiére</th>
+                <th>Control</th>
+                <th>Exam</th>
+                <th class="text-right">Note général</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in result %}
+              <tr>
+                <td>{{ i.matiere_id.nom }}</td>
+                <td>{{ i.controle_note }}</td>
+                <td>{{ i.exam_note }}</td>
+                <td class="text-right">
+                  <span class="status-badge" data-assignment="{{ i.controle_note }}" data-exam="{{ i.exam_note }}"></span>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // JavaScript
+  const statusBadges = document.querySelectorAll(".status-badge");
+
+  statusBadges.forEach((badge) => {
+    const assignmentMark = parseFloat(badge.dataset.assignment);
+    const examMark = parseFloat(badge.dataset.exam);
+
+    // Calculate the final score using the formula (Assignment Mark * 0.25) + (Exam Mark * 0.75)
+    const finalScore = (assignmentMark * 0.25) + (examMark * 0.75);
+
+    // Display the result
+    badge.textContent = finalScore.toFixed(2); // Displaying with 2 decimal places
+
+    // Check the condition and apply appropriate class
+    if (finalScore >= 5) {
+      badge.classList.add("badge-success"); // Apply "badge-success" class
+    } else {
+      badge.classList.add("badge-danger"); // Apply "badge-danger" class
+    }
+  });
+</script>
+
+{% endblock %}
+

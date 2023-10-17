@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="content container-fluid">
+
+<div class="page-header">
+<div class="row align-items-center">
+<div class="col">
+<h3 class="page-title">Modifier matière</h3>
+
+</div>
+</div>
+</div>
+ {% include 'comprend/messages.html' %}
+<div class="row">
+<div class="col-sm-12">
+<div class="card">
+<div class="card-body">
+<form  method="post" action="{% url 'update_matiere' %}">
+    {%csrf_token%}
+<div class="row">
+<div class="col-12">
+<h5 class="form-title"><span>Information sur la matière</span></h5>
+</div>
+<div class="col-12 col-sm-6">
+<div class="form-group">
+<label>Nom de la matière</label>
+<input type="text" class="form-control" name="matiere_name" value="{{matiere.nom}}" required >
+<input type="text" class="form-control" name="matiere_id" value="{{matiere.id}}" required hidden>
+</div>
+</div>
+<div class="col-12 col-sm-6">
+ <label>Groupe</label>
+   <select class="form-control" name="groupe_id" required>
+  <option>Sélectionnez le groupe</option>
+       {% for i in groupe %}
+  <option value="{{i.id}}">{{i.nom}}</option>
+{%endfor%}
+   </select>
+</div>
+
+<div class="col-12 col-sm-6">
+<label>professeur</label>
+   <select class="form-control" name="prof_id" required>
+   <option>Selectionnez professeur</option>
+       {%for i in prof%}
+  <option value="{{i.id}}">{{i.admin.first_name}} &nbsp;{{i.admin.last_name}} </option>
+{%endfor%}
+   </select>
+</div>
+    <br>
+<div class="col-12 mt-4">
+<button type="submit" class="btn btn-primary">Modifier Matière</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}
