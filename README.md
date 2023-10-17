@@ -1,4 +1,4 @@
-# application web de gestion étudiant
+# Application web de gestion des étudiants en Python.
 L'application offre aux administrateurs, aux étudiants et aux professeurs la possibilité de se
 connecter et de bénéficier de diverses fonctionnalités. L'administrateur peut ajouter des 
 étudiants, des professeurs, des groupes, des années de session et des matières, tout en 
